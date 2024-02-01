@@ -24,3 +24,10 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+Cypress.Commands.add('gotopage', (pageHref, timeoutInput = 5000) => {
+    cy.get(`a[href="/${pageHref}"]`, {timeout:timeoutInput})
+        .click()
+    cy.url()
+        .should('contain', `/${pageHref}`)
+})
+
